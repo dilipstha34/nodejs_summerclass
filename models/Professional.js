@@ -1,4 +1,8 @@
+// models/Professional.js
+
 const mongoose = require("mongoose");
+
+// Professional Schema
 
 const professionalSchema = new mongoose.Schema(
     {
@@ -8,15 +12,19 @@ const professionalSchema = new mongoose.Schema(
             trim: true,
             minlength: [3, "Name must be at least 3 characters"]
         },
+
         category: {
             type: String,
             required: true,
             enum: ["Developer", "Designer", "Manager"]
         }
     },
+
     {
         timestamps: true
     }
+
 );
 
+// Export the model
 module.exports = mongoose.model("Professional", professionalSchema);
