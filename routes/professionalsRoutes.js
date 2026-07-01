@@ -6,6 +6,7 @@ const Professional = require("../models/Professional");
 
 
 // GET ALL PROFESSIONALS
+
 router.get("/", async (req, res) => {
     try {
         const category = req.query.category;
@@ -31,6 +32,7 @@ router.get("/", async (req, res) => {
 
 
 // GET PROFESSIONAL BY ID
+
 router.get("/:id", async (req, res) => {
     try {
         const professional = await Professional.findById(req.params.id);
@@ -51,6 +53,7 @@ router.get("/:id", async (req, res) => {
 
 
 // CREATE PROFESSIONAL
+
 router.post("/", async (req, res) => {
     try {
         const professional = new Professional(req.body);
@@ -67,6 +70,7 @@ router.post("/", async (req, res) => {
 
 
 // UPDATE PROFESSIONAL
+
 router.put("/:id", async (req, res) => {
     try {
         const updatedProfessional = await Professional.findByIdAndUpdate(
@@ -95,6 +99,7 @@ router.put("/:id", async (req, res) => {
 
 
 // DELETE PROFESSIONAL
+
 router.delete("/:id", async (req, res) => {
     try {
         const deletedProfessional = await Professional.findByIdAndDelete(
