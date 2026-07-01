@@ -1,120 +1,120 @@
 const express = require("express");
 
 const router = express.Router();
-const professionals = require("../models/Professional");
+
+const Professional = require("../models/Professional");
+
 
 // GET ALL PROFESSIONALS
+router.get("/", async (req, res) => {
+    try {
+        const category = req.query.category;
 
-router.get("/", (req, res) => {
+        let professionals;
 
-    const category = req.query.category;
+        if (category) {
+            professionals = await Professional.find({
+                category: category
+            });
+        } else {
+            professionals = await Professional.find();
+        }
 
-    if (category) {
-
-        const filtered = professionals.filter(
-            p => p.category === category
-        );
-
-        return res.status(200).json(filtered);
+        res.status(200).json(professionals);
+    } catch (error) {
+        res.status(500).json({
+            error: error.message
+        });
     }
-
-    res.status(200).json(professionals);
 });
 
 
+
 // GET PROFESSIONAL BY ID
+router.get("/:id", async (req, res) => {
+    try {
+        const professional = await Professional.findById(req.params.id);
 
-router.get("/:id", (req, res) => {
+        if (!professional) {
+            return res.status(404).json({
+                error: "Professional not found"
+            });
+        }
 
-    const targetId = parseInt(req.params.id);
-
-    const result = professionals.find(
-        p => p.id === targetId
-    );
-
-    if (!result) {
-        return res.status(404).json({
-            error: "Professional not found"
+        res.status(200).json(professional);
+    } catch (error) {
+        res.status(400).json({
+            error: "Invalid ID"
         });
     }
-
-    res.status(200).json(result);
 });
 
 
 // CREATE PROFESSIONAL
+router.post("/", async (req, res) => {
+    try {
+        const professional = new Professional(req.body);
 
-router.post("/", (req, res) => {
+        const savedProfessional = await professional.save();
 
-    const { name, category } = req.body;
-
-    if (!name || !category) {
-        return res.status(400).json({
-            error: "Missing required fields"
+        res.status(201).json(savedProfessional);
+    } catch (error) {
+        res.status(400).json({
+            error: error.message
         });
     }
-
-    const generatedProfile = {
-        id: professionals.length + 1,
-        name,
-        category
-    };
-
-    professionals.push(generatedProfile);
-
-    res.status(201).json(generatedProfile);
 });
+
 
 // UPDATE PROFESSIONAL
+router.put("/:id", async (req, res) => {
+    try {
+        const updatedProfessional = await Professional.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            {
+                new: true,
+                runValidators: true
+            }
+        );
 
-router.put("/:id", (req, res) => {
+        if (!updatedProfessional) {
+            return res.status(404).json({
+                error: "Professional not found"
+            });
+        }
 
-    const targetId = parseInt(req.params.id);
-
-    const { name, category } = req.body;
-
-    const professional = professionals.find(
-        p => p.id === targetId
-    );
-
-    if (!professional) {
-        return res.status(404).json({
-            error: "Professional not found"
+        res.status(200).json(updatedProfessional);
+    } catch (error) {
+        res.status(400).json({
+            error: error.message
         });
     }
-
-    if (name) {
-        professional.name = name;
-    }
-
-    if (category) {
-        professional.category = category;
-    }
-
-    res.status(200).json(professional);
 });
 
+
+
 // DELETE PROFESSIONAL
+router.delete("/:id", async (req, res) => {
+    try {
+        const deletedProfessional = await Professional.findByIdAndDelete(
+            req.params.id
+        );
 
-router.delete("/:id", (req, res) => {
+        if (!deletedProfessional) {
+            return res.status(404).json({
+                error: "Professional not found"
+            });
+        }
 
-    const targetId = parseInt(req.params.id);
-
-    const index = professionals.findIndex(
-        p => p.id === targetId
-    );
-
-    if (index === -1) {
-        return res.status(404).json({
-            error: "Professional not found"
+        res.status(200).json({
+            message: "Professional deleted successfully"
+        });
+    } catch (error) {
+        res.status(500).json({
+            error: error.message
         });
     }
-
-    professionals.splice(index, 1);
-
-    res.status(200).json({
-        message: "Professional deleted successfully"
-    });
 });
 
 module.exports = router;
