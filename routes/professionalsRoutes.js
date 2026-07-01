@@ -1,7 +1,7 @@
 const express = require("express");
 
 const router = express.Router();
-const professionals = require("../data/professionals");
+const professionals = require("../models/Professional");
 
 // GET ALL PROFESSIONALS
 
