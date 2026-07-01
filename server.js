@@ -8,7 +8,9 @@ const app = express();
 // Middleware
 app.use(express.json());
 
-// MongoDB Connection
+
+// MongoDB Connection with mongoose
+
 mongoose
     .connect(process.env.MONGO_URI)
     .then(() => {
@@ -18,12 +20,15 @@ mongoose
         console.error("MongoDB Connection Error:", err);
     });
 
+
 // Routes
+
 const professionalRoutes = require("./routes/professionalsRoutes");
 
 app.use("/api/professionals", professionalRoutes);
 
 // Server
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
