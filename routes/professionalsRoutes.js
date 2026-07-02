@@ -1,6 +1,11 @@
+// professionalsRoutes.js
 const express = require("express");
 
+// Create a router instance
+
 const router = express.Router();
+
+// Import the Professional model
 
 const Professional = require("../models/Professional");
 
@@ -52,7 +57,8 @@ router.get("/:id", async (req, res) => {
 });
 
 
-// CREATE PROFESSIONAL
+
+// Create a new professional 
 
 router.post("/", async (req, res) => {
     try {
@@ -69,7 +75,8 @@ router.post("/", async (req, res) => {
 });
 
 
-// UPDATE PROFESSIONAL
+
+// Update a professional by ID
 
 router.put("/:id", async (req, res) => {
     try {
@@ -98,7 +105,7 @@ router.put("/:id", async (req, res) => {
 
 
 
-// DELETE PROFESSIONAL
+// Delete a professional by ID
 
 router.delete("/:id", async (req, res) => {
     try {
@@ -121,5 +128,8 @@ router.delete("/:id", async (req, res) => {
         });
     }
 });
+
+
+// Export the router
 
 module.exports = router;
