@@ -89,12 +89,16 @@ router.put("/:id", async (req, res) => {
             }
         );
 
+        // Check if the professional was found and updated
+
         if (!updatedProfessional) {
             return res.status(404).json({
                 error: "Professional not found"
             });
         }
 
+        // Respond with the updated professional
+        
         res.status(200).json(updatedProfessional);
     } catch (error) {
         res.status(400).json({
@@ -113,12 +117,16 @@ router.delete("/:id", async (req, res) => {
             req.params.id
         );
 
+        // Check if the professional was found and deleted
+
         if (!deletedProfessional) {
             return res.status(404).json({
                 error: "Professional not found"
             });
         }
 
+        // Respond with a success message
+        
         res.status(200).json({
             message: "Professional deleted successfully"
         });
