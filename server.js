@@ -1,13 +1,18 @@
+// Load environment variables from .env file
+
 require("dotenv").config();
 
 // Import the required modules
+
 const express = require("express");
 const mongoose = require("mongoose");
 
 // Create an Express application
+
 const app = express();
 
 // Middleware to parse JSON request bodies
+
 app.use(express.json());
 
 
@@ -18,6 +23,7 @@ mongoose
     .then(() => {
         console.log("Connected to MongoDB");
     })
+    // Handle connection errors
     .catch((err) => {
         console.error("MongoDB Connection Error:", err);
     });
