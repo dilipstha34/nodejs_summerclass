@@ -2,9 +2,15 @@
 
 require("dotenv").config();
 
+
 // Import the required modules
 
+// Import the Express framework
+
 const express = require("express");
+
+// Import mongoose for MongoDB connection
+
 const mongoose = require("mongoose");
 
 // Create an Express application
