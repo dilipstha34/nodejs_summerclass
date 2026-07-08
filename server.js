@@ -42,6 +42,8 @@ mongoose
 const professionalRoutes = require("./routes/professionalsRoutes");
 
 
+const authCtrl = require('./controllers/authController');
+app.post('/api/auth/register', authCtrl.register);
 // Use the professionals routes
 
 app.use("/api/professionals", professionalRoutes);
