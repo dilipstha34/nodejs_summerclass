@@ -21,6 +21,8 @@ const app = express();
 
 app.use(express.json());
 
+console.log("Secret Key:", process.env.JWT_SECRET);
+
 
 // MongoDB Connection with mongoose
 
