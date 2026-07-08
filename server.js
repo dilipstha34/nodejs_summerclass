@@ -21,8 +21,6 @@ const app = express();
 
 app.use(express.json());
 
-console.log("Secret Key:", process.env.JWT_SECRET);
-
 
 // MongoDB Connection with mongoose
 
@@ -42,8 +40,6 @@ mongoose
 const professionalRoutes = require("./routes/professionalsRoutes");
 
 
-const authCtrl = require('./controllers/authController');
-app.post('/api/auth/register', authCtrl.register);
 // Use the professionals routes
 
 app.use("/api/professionals", professionalRoutes);
