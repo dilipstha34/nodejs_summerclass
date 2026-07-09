@@ -7,7 +7,7 @@ const router = express.Router();
 
 // Import the Professional model
 
-const Professional = require("../models/Professional");
+const Professional = require("../model/Professional");
 
 
 // GET ALL PROFESSIONALS
