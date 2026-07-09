@@ -44,6 +44,13 @@ const professionalRoutes = require("./routes/professionalsRoutes");
 
 app.use("/api/professionals", professionalRoutes);
 
+// Import the auth routes
+
+const authRoutes = require("./routes/authRoutes");
+
+// Use the auth routes
+
+app.use("/api/auth", authRoutes);
 
 // Start the server
 
