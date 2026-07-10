@@ -1,8 +1,19 @@
+// routes/authRoutes.js
+
+// Import the required modules
+
 const express = require('express');
+
+// Import the User model
 const User = require('../model/user');
+
+// Import the password utility functions
 const { hashpass, comparePass } = require('../util/password');
+
+// Create a router instance
 const jwt = require('jsonwebtoken');
 
+// Create a router instance
 const router = express.Router();
 
 // register a new user
