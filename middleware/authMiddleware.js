@@ -1,3 +1,5 @@
+// Authentication middleware to verify JWT token and protect routes
+
 const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
