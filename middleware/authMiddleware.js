@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 // Middleware function to verify JWT token
 module.exports = (req, res, next) => {
     const token = req.header("x-auth-token");
-    
+     // Check if token is present in the request header
     if (!token) {
         return res.status(401).json({
             error: "No token supplied. Authorization denied."
