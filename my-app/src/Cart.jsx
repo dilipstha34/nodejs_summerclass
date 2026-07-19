@@ -1,3 +1,5 @@
+// my-app/src/Cart.jsx
+
 const Cart = () => {
   return (
     <div>
@@ -6,5 +8,7 @@ const Cart = () => {
     </div>
   );
 };
+
+// Export the Cart component as the default export
 
 export default Cart;
