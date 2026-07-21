@@ -1,5 +1,7 @@
 // Profile.jsx
 
+// This is a simple React component that represents a profile page.
+
 const Profile = () => {
   return (
     <div>
@@ -9,6 +11,6 @@ const Profile = () => {
   );
 };
 
-// Export the Profile component as the default export
+// Export the Profile component as the default export of this module.
 
 export default Profile;
